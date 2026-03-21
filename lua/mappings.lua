@@ -65,7 +65,7 @@ local function close_terminal()
 end
 
 map("t", "jk", close_terminal, { desc = "Terminal Close terminal" })
-map("t", "<ESC>", close_terminal, { desc = "Terminal Close terminal" })
+map("t", "<ESC><ESC>", close_terminal, { desc = "Terminal Close terminal" })
 map("n", "<leader>h", function()
   require("nvchad.term").new { pos = "sp", size = 0.5 }
 end, { desc = "Terminal New horizontal terminal" })
