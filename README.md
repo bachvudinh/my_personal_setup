@@ -1,6 +1,11 @@
 # Personal Neovim Setup
 
-My personal Neovim configuration built on top of [NvChad v2.0](https://nvchad.com/), optimised for a Mac + tmux + WezTerm workflow. Includes full LSP support, AI completion via Copilot, debugger (DAP), and fast file navigation with Harpoon.
+My personal Neovim configuration built on top of [NvChad v2.5](https://nvchad.com/), optimised for a Mac + tmux + WezTerm workflow. Includes full LSP support, AI completion via Copilot, debugger (DAP), and fast file navigation with Harpoon.
+
+## Credits
+
+- [NvChad](https://github.com/NvChad/NvChad) — the base framework this config is built on
+- [NvMegaChad](https://github.com/le4ker/NvMegaChad) — inspiration and plugin ideas
 
 ---
 
