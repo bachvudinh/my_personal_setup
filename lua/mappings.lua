@@ -98,6 +98,26 @@ map("n", "<leader>ti", function()
   print(vim.lsp.inlay_hint.is_enabled() and "Inlay hints enabled" or "Inlay hints disabled")
 end, { desc = "General Toggle inlay hints" })
 map("n", "<leader>pr", "<cmd> MarkdownPreviewToggle <CR>", { desc = "General Preview Markdown file" })
+
+-- Run code in a new terminal split
+map("n", "<leader>rp", function()
+  vim.cmd "w"
+  require("nvchad.term").new { pos = "sp", size = 0.35, cmd = "python " .. vim.fn.expand "%" }
+end, { desc = "Run Python file" })
+
+map("n", "<leader>rg", function()
+  vim.cmd "w"
+  require("nvchad.term").new { pos = "sp", size = 0.35, cmd = "go run " .. vim.fn.expand "%" }
+end, { desc = "Run Go file" })
+
+-- New terminal splits
+map("n", "<leader>tv", function()
+  require("nvchad.term").new { pos = "vsp", size = 0.35 }
+end, { desc = "Terminal New vertical terminal" })
+
+map("n", "<leader>th", function()
+  require("nvchad.term").new { pos = "sp", size = 0.35 }
+end, { desc = "Terminal New horizontal terminal" })
 map("i", "jk", "<ESC>", { desc = "General Escape insert mode" })
 map("n", "<leader>fmt", function()
   vim.g.format_on_save = not vim.g.format_on_save
