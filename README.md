@@ -1,10 +1,12 @@
 # Personal Neovim Setup
 
-My personal Neovim configuration built on top of [NvChad v2.5](https://nvchad.com/), optimised for a Mac + tmux + WezTerm workflow. Includes full LSP support, AI completion via Copilot, debugger (DAP), and fast file navigation with Harpoon.
+My personal Neovim configuration built on top of [NvChad v2.5](https://nvchad.com/), optimised for a **Mac + tmux + WezTerm** workflow.
+
+**Features**: Full LSP, AI via Copilot + Claude (CodeCompanion), Debugger (DAP), instant file switching (Harpoon), seamless tmux navigation (smart-splits), auto-formatting, linting.
 
 ## Credits
 
-- [NvChad](https://github.com/NvChad/NvChad) — the base framework this config is built on
+- [NvChad](https://github.com/NvChad/NvChad) — base framework
 - [NvMegaChad](https://github.com/le4ker/NvMegaChad) — inspiration and plugin ideas
 
 ---
@@ -16,11 +18,11 @@ My personal Neovim configuration built on top of [NvChad v2.5](https://nvchad.co
 brew install neovim tmux
 brew install --cask wezterm
 
-# Font (icons in nvim-tree, statusline, etc.)
+# Font (icons in file tree, statusline, etc.)
 brew install --cask font-jetbrains-mono-nerd-font
 
-# Optional but recommended tools (installed by Mason automatically)
-brew install ripgrep fd lazygit
+# Recommended CLI tools
+brew install ripgrep fd
 ```
 
 ---
@@ -28,17 +30,20 @@ brew install ripgrep fd lazygit
 ## Installation
 
 ```bash
-# 1. Back up existing config if any
+# 1. Back up existing config
 mv ~/.config/nvim ~/.config/nvim.bak
 
-# 2. Clone this repo as your nvim config
-git clone git@github.com:bachvudinh/personal_vim_setup.git ~/.config/nvim
+# 2. Clone this repo
+git clone git@github.com:bachvudinh/my_personal_setup.git ~/.config/nvim
 
-# 3. Symlink dotfiles (run from repo root)
+# 3. Symlink dotfiles
 ln -sf ~/.config/nvim/.wezterm.lua ~/.wezterm.lua
 ln -sf ~/.config/nvim/.tmux.conf ~/.tmux.conf
 
-# 4. Open Neovim — plugins install automatically
+# 4. Set Anthropic API key (for CodeCompanion / Claude AI)
+export ANTHROPIC_API_KEY=your_key_here
+
+# 5. Open Neovim — plugins install automatically
 nvim
 ```
 
@@ -48,20 +53,42 @@ nvim
 
 | Plugin | Purpose |
 |---|---|
-| [NvChad](https://nvchad.com/) | Base framework, UI, theme engine |
+| [NvChad](https://nvchad.com/) | Base framework, UI, theme engine (catppuccin) |
+| [codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim) | Claude AI assistant in editor |
+| [copilot.vim](https://github.com/github/copilot.vim) | GitHub Copilot inline suggestions |
+| [copilot-cmp](https://github.com/zbirenbaum/copilot-cmp) | Copilot as completion source |
 | [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) | LSP client configs |
 | [mason.nvim](https://github.com/williamboman/mason.nvim) | Install LSP servers, linters, formatters |
 | [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) | Autocompletion engine |
 | [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) | Syntax highlighting & text objects |
-| [harpoon](https://github.com/ThePrimeagen/harpoon) | Pin files and jump instantly (replaces tab muscle memory) |
-| [smart-splits.nvim](https://github.com/mrjones2014/smart-splits.nvim) | Seamless Neovim ↔ tmux pane navigation |
+| [harpoon](https://github.com/ThePrimeagen/harpoon) | Pin files and jump instantly |
+| [smart-splits.nvim](https://github.com/mrjones2014/smart-splits.nvim) | Seamless Neovim ↔ tmux navigation |
 | [nvim-tree.lua](https://github.com/nvim-tree/nvim-tree.lua) | File explorer sidebar |
-| [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | Fuzzy finder for files, text, git |
-| [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | Git decorations, hunk preview, blame |
+| [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | Fuzzy finder |
+| [conform.nvim](https://github.com/stevearc/conform.nvim) | Auto-formatting on save |
+| [nvim-lint](https://github.com/mfussenegger/nvim-lint) | Linting |
+| [nvim-dap](https://github.com/mfussenegger/nvim-dap) | Debugger (Go + Python) |
+| [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui) | Debugger UI |
+| [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | Git decorations, inline blame, hunk tools |
 | [Comment.nvim](https://github.com/numToStr/Comment.nvim) | Toggle comments |
-| [which-key.nvim](https://github.com/folke/which-key.nvim) | Keymap popup guide |
+| [markdown-preview](https://github.com/iamcco/markdown-preview.nvim) | Live markdown preview in browser |
 | [nvim-autopairs](https://github.com/windwp/nvim-autopairs) | Auto close brackets/quotes |
 | [LuaSnip](https://github.com/L3MON4D3/LuaSnip) | Snippets |
+
+---
+
+## Languages Supported
+
+### LSP Servers
+`gopls` · `pyright` · `ts_ls` · `ruby_lsp` · `lua_ls` · `bashls` · `clangd` · `cssls` · `dockerls` · `html` · `marksman` · `taplo` · `terraformls` · `tflint` · `vimls` · `yamlls`
+
+### Formatters
+Go · Python · TypeScript · JavaScript · Ruby · Lua · C/C++ · CSS/SCSS · HTML · JSON · Markdown · SQL · Shell · Terraform · TOML · YAML
+
+### Linters
+Go (`golangci-lint`) · Python (`pylint`) · Ruby (`rubocop`) · Markdown (`markdownlint`) · Terraform (`tflint`)
+
+Run `:Mason` to install/manage all tools.
 
 ---
 
@@ -76,10 +103,22 @@ nvim
 | Key | Action |
 |---|---|
 | `i` | Enter insert mode |
-| `Esc` or `jk` | Return to normal mode |
-| `v` | Enter visual mode |
-| `V` | Enter visual line mode |
-| `Ctrl+v` | Enter visual block mode |
+| `jk` | Exit insert mode → normal mode |
+| `v` | Visual mode |
+| `V` | Visual line mode |
+| `Ctrl+v` | Visual block mode |
+| `Esc` | Clear search highlights (normal mode) |
+
+---
+
+### AI — CodeCompanion (Claude) + Copilot
+
+| Key | Action |
+|---|---|
+| `<Space>cc` | Toggle Claude chat panel |
+| `<Space>ca` | Claude code actions |
+| `<Space>ci` | Inline Claude assist (visual mode) |
+| `<Space>cp` | Toggle GitHub Copilot on/off |
 
 ---
 
@@ -89,8 +128,8 @@ nvim
 
 | Key | Action |
 |---|---|
-| `<Space>a` | Pin current file to harpoon list |
-| `Ctrl+e` | Open harpoon quick menu (edit the list) |
+| `<Space>a` | Pin current file |
+| `Ctrl+e` | Open harpoon menu |
 | `Ctrl+1` | Jump to pinned file 1 |
 | `Ctrl+2` | Jump to pinned file 2 |
 | `Ctrl+3` | Jump to pinned file 3 |
@@ -102,13 +141,11 @@ nvim
 
 | Key | Action |
 |---|---|
-| `<Space>ff` | Find files in project |
-| `<Space>fa` | Find ALL files (including hidden, gitignored) |
-| `<Space>fw` | Live grep — search text across project |
+| `<Space>ff` | Find files |
+| `<Space>fa` | Find ALL files (hidden + gitignored) |
+| `<Space>fw` | Live grep — search text in project |
 | `<Space>fb` | Find open buffers |
-| `<Space>fo` | Find recently opened files |
-| `<Space>fh` | Search help tags |
-| `<Space>th` | Browse and switch themes |
+| `<Space>th` | Browse & switch themes |
 | `<Space>pt` | Pick a hidden terminal |
 
 #### File Tree (nvim-tree)
@@ -117,95 +154,101 @@ nvim
 |---|---|
 | `Ctrl+n` | Toggle file tree |
 | `<Space>e` | Focus file tree |
-| `a` | Create file/folder (while in tree) |
-| `d` | Delete file/folder |
-| `r` | Rename file |
-| `c` | Copy file |
-| `p` | Paste file |
-| `x` | Cut file |
+| `a` | Create file/folder |
+| `d` | Delete |
+| `r` | Rename |
+| `c` / `p` / `x` | Copy / Paste / Cut |
 | `Enter` or `o` | Open file |
-| `W` | Collapse all folders |
+| `W` | Collapse all |
 | `H` | Toggle hidden files |
 
 ---
 
 ### Window & Pane Navigation
 
-> Works seamlessly between Neovim splits AND tmux panes
+> Seamless between Neovim splits and tmux panes via smart-splits
 
 | Key | Action |
 |---|---|
-| `Ctrl+h` | Move to left split / tmux pane |
-| `Ctrl+j` | Move to lower split / tmux pane |
-| `Ctrl+k` | Move to upper split / tmux pane |
-| `Ctrl+l` | Move to right split / tmux pane |
-| `Option+h` | Resize split/pane left |
-| `Option+j` | Resize split/pane down |
-| `Option+k` | Resize split/pane up |
-| `Option+l` | Resize split/pane right |
+| `Ctrl+h` | Move left |
+| `Ctrl+j` | Move down |
+| `Ctrl+k` | Move up |
+| `Ctrl+l` | Move right |
+| `Option+h` | Resize left |
+| `Option+j` | Resize down |
+| `Option+k` | Resize up |
+| `Option+l` | Resize right |
+| `Ctrl+W L` | Move window to far right |
+| `Ctrl+W H` | Move window to far left |
+| `Ctrl+W J` | Move window to bottom |
+| `Ctrl+W K` | Move window to top |
 
-#### Splits
-
-| Key | Action |
-|---|---|
-| `<Space>v` | Open vertical split |
-| `<Space>h` | Open horizontal terminal |
-
-#### Buffers
+#### Splits & Buffers
 
 | Key | Action |
 |---|---|
+| `<Space>v` | Vertical split |
 | `Tab` | Next buffer |
 | `Shift+Tab` | Previous buffer |
-| `<Space>x` | Close current buffer |
+| `<Space>x` | Close buffer |
 | `<Space>b` | New empty buffer |
 
 ---
 
 ### LSP — Language Intelligence
 
-> Works in any file with a language server active (shown in statusline)
-
 | Key | Action | VSCode Equivalent |
 |---|---|---|
 | `gd` | Go to definition | `F12` |
 | `gD` | Go to declaration | — |
 | `gi` | Go to implementation | `Ctrl+F12` |
-| `gr` | Show all references | `Shift+F12` |
+| `gr` | Show references | `Shift+F12` |
+| `gt` | Go to type definition | — |
 | `K` | Hover documentation | Mouse hover |
-| `<Space>D` | Go to type definition | — |
-| `<Space>ra` | Rename symbol | `F2` |
-| `<Space>ca` | Code actions | `Ctrl+.` |
-| `<Space>ls` | Signature help | — |
-| `<Space>f` | Show line diagnostics (float) | hover red squiggle |
-| `[d` | Go to previous diagnostic | — |
-| `]d` | Go to next diagnostic | — |
-| `<Space>q` | Send diagnostics to location list | — |
-| `<Space>fm` | Format file | `Shift+Alt+F` |
-| `<Space>wa` | Add workspace folder | — |
-| `<Space>wr` | Remove workspace folder | — |
-| `<Space>wl` | List workspace folders | — |
-
-#### Installed LSP Servers (via Mason)
-
-`lua_ls` · `gopls` · `pyright` · `ts_ls` · `rust_analyzer` · `bashls` · `dockerls` · `html` · `cssls` · `jsonls` · `yamlls` · `marksman`
-
-Run `:Mason` to install/manage servers.
+| `<Space>rn` | Rename symbol | `F2` |
+| `<Space>ld` | Show line diagnostics | hover squiggle |
+| `[d` | Previous diagnostic | — |
+| `]d` | Next diagnostic | — |
+| `<Space>ti` | Toggle inlay hints | — |
 
 ---
 
 ### Git (gitsigns)
 
+> Inline blame is always on — shows author on current line
+
 | Key | Action |
 |---|---|
-| `]c` | Jump to next git hunk |
-| `[c` | Jump to previous git hunk |
+| `]c` | Next git hunk |
+| `[c` | Previous git hunk |
 | `<Space>rh` | Reset hunk |
-| `<Space>ph` | Preview hunk diff |
-| `<Space>gb` | Blame current line |
-| `<Space>td` | Toggle deleted lines view |
-| `<Space>cm` | Telescope: browse git commits |
-| `<Space>gt` | Telescope: git status |
+| `<Space>ph` | Preview hunk |
+| `<Space>gb` | Blame current line (popup) |
+| `<Space>td` | Toggle deleted lines |
+| `<Space>cm` | Git commits (Telescope) |
+| `<Space>gt` | Git status (Telescope) |
+
+---
+
+### Debugger (DAP)
+
+#### Go
+
+| Key | Action |
+|---|---|
+| `<Space>db` | Toggle breakpoint |
+| `<Space>dc` | Continue |
+| `<Space>dso` | Step over |
+| `<Space>dsi` | Step into |
+| `<Space>dt` | Terminate |
+| `<Space>dgt` | Debug Go test under cursor |
+| `<Space>dglt` | Debug last Go test |
+
+#### Python
+
+| Key | Action |
+|---|---|
+| `<Space>dpt` | Debug Python test method |
 
 ---
 
@@ -214,11 +257,10 @@ Run `:Mason` to install/manage servers.
 | Key | Action |
 |---|---|
 | `<Space>h` | New horizontal terminal |
-| `<Space>v` | New vertical terminal |
-| `Alt+i` | Toggle floating terminal |
-| `Alt+h` | Toggle horizontal terminal |
-| `Alt+v` | Toggle vertical terminal |
-| `Ctrl+x` | Exit terminal mode (back to normal) |
+| `jk` | Close terminal |
+| `ESC ESC` | Close terminal |
+| `Ctrl+W L` | Move terminal to right side |
+| `i` | Re-enter terminal mode |
 
 ---
 
@@ -227,23 +269,30 @@ Run `:Mason` to install/manage servers.
 | Key | Action |
 |---|---|
 | `<Space>/` | Toggle comment (normal & visual) |
-| `gcc` | Toggle comment (line) |
-| `gc` | Toggle comment (motion, e.g. `gcip` = comment paragraph) |
-| `<Space>cc` | Jump to current indent context |
-| `Ctrl+s` | Save file |
-| `Ctrl+c` | Copy entire file to clipboard |
-| `<Space>b` | New buffer |
+| `<Space>s` | Save file |
+| `<Space>v` | Vertical split |
+| `<Space>fmt` | Toggle format on save |
+| `<Space>pr` | Toggle Markdown preview |
+| `<Space>lu` | Update all plugins (Lazy) |
+| `<C-c>` | Copy entire file to clipboard |
+| `Shift+U` | Redo |
+| `Ctrl+d` | Scroll half page down (centered) |
+| `Ctrl+u` | Scroll half page up (centered) |
 
-#### Insert Mode Movement (stay in insert mode)
+#### Insert Mode Movement
 
 | Key | Action |
 |---|---|
-| `Ctrl+h` | Move cursor left |
-| `Ctrl+l` | Move cursor right |
-| `Ctrl+j` | Move cursor down |
-| `Ctrl+k` | Move cursor up |
-| `Ctrl+b` | Jump to beginning of line |
-| `Ctrl+e` | Jump to end of line |
+| `Ctrl+h/l/j/k` | Move cursor left/right/down/up |
+
+#### Visual Mode
+
+| Key | Action |
+|---|---|
+| `d` or `x` | Delete selected |
+| `c` | Delete and enter insert |
+| `y` | Yank (copy) |
+| `<Space>/` | Comment selection |
 
 ---
 
@@ -251,12 +300,8 @@ Run `:Mason` to install/manage servers.
 
 | Key | Action |
 |---|---|
-| `<Space>ch` | Open NvChad cheatsheet |
-| `<Space>th` | Browse & switch themes |
-| `<Space>wK` | Show all which-key mappings |
-| `<Space>wk` | Query which-key for a specific key |
-| `<Space>n` | Toggle line numbers |
-| `<Space>rn` | Toggle relative numbers |
+| `<Space>ch` | NvChad cheatsheet |
+| `<Space>th` | Theme switcher |
 
 ---
 
@@ -267,24 +312,19 @@ Run `:Mason` to install/manage servers.
 | Key | Action |
 |---|---|
 | `Ctrl+A c` | New window |
-| `Ctrl+A |` | Split vertically |
+| `Ctrl+A \|` | Split vertically |
 | `Ctrl+A -` | Split horizontally |
-| `Ctrl+A 1-4` | Switch to window 1-4 |
-| `Ctrl+A r` | Reload tmux config |
+| `Ctrl+A 1-4` | Switch window |
+| `Ctrl+A r` | Reload config |
 | `Ctrl+A d` | Detach session |
-| `Ctrl+A [` | Enter scroll/copy mode (`q` to exit) |
-| `Ctrl+h/j/k/l` | Move between panes (or nvim splits) |
+| `Ctrl+A [` | Scroll mode (`q` to exit) |
+| `Ctrl+h/j/k/l` | Move between panes / nvim splits |
 | `Option+h/j/k/l` | Resize panes |
 
 ```bash
-# Start a named session
-tmux new -s work
-
-# List sessions
-tmux ls
-
-# Attach to session
-tmux attach -t work
+tmux new -s work       # start session
+tmux ls                # list sessions
+tmux attach -t work    # attach
 ```
 
 ---
@@ -295,13 +335,12 @@ tmux attach -t work
 |---|---|
 | `Cmd+T` | New tab |
 | `Cmd+W` | Close tab |
-| `Cmd+[` | Previous tab |
-| `Cmd+]` | Next tab |
-| `Cmd+1-5` | Jump to tab 1-5 |
-| `Cmd+D` | Split pane vertically |
-| `Cmd+Shift+D` | Split pane horizontally |
-| `Cmd+Enter` | Toggle fullscreen |
-| `Cmd+h/j/k/l` | Move between panes (forwarded as Ctrl+hjkl) |
+| `Cmd+[` / `Cmd+]` | Previous / next tab |
+| `Cmd+1-5` | Jump to tab |
+| `Cmd+D` | Split vertically |
+| `Cmd+Shift+D` | Split horizontally |
+| `Cmd+Enter` | Fullscreen |
+| `Cmd+h/j/k/l` | Move between panes |
 
 ---
 
@@ -311,38 +350,39 @@ tmux attach -t work
 WezTerm
 └── tmux session "work"
     ├── window 1: nvim  (Ctrl+A 1)
-    │   ├── harpoon: Ctrl+1 Ctrl+2 Ctrl+3 Ctrl+4 → instant file jump
-    │   ├── telescope: Space+ff → find any file
-    │   └── splits: Ctrl+hjkl to move between them
-    └── window 2: shell  (Ctrl+A 2, or Ctrl+j from nvim)
+    │   ├── harpoon pins → Ctrl+1/2/3/4 instant jump
+    │   ├── Space+ff to find any file
+    │   ├── Space+cc to open Claude chat
+    │   └── Ctrl+hjkl to move between splits
+    └── window 2: shell  (Ctrl+j from nvim)
 ```
 
-### Daily flow
+### Daily Flow
 
-1. `tmux new -s myproject` — start a session
-2. `nvim .` — open editor in window 1
-3. Open your 3-4 main files → `<Space>a` to pin each one
-4. `Ctrl+1/2/3/4` to jump between them instantly
-5. `Ctrl+j` to drop into terminal pane, `Ctrl+k` to come back
-6. `<Space>fw` when you need to search across the whole project
+1. `tmux new -s myproject`
+2. `nvim .` — open editor
+3. Pin your main files with `<Space>a`, jump with `Ctrl+1-4`
+4. `<Space>fw` to search across the project
+5. `<Space>cc` to ask Claude for help
+6. `Ctrl+j` to drop into terminal, `Ctrl+k` to come back
 
 ---
 
 ## Tips for VSCode Refugees
 
-| You're used to | Do this instead |
+| VSCode | Neovim |
 |---|---|
-| `Ctrl+P` to open any file | `<Space>ff` |
-| `Ctrl+Shift+F` to search text | `<Space>fw` |
-| Clicking tabs to switch files | Pin with `<Space>a`, jump with `Ctrl+1-4` |
+| `Ctrl+P` | `<Space>ff` |
+| `Ctrl+Shift+F` | `<Space>fw` |
+| Click tabs | Harpoon `Ctrl+1-4` |
 | `F12` go to definition | `gd` |
-| `F2` rename | `<Space>ra` |
-| `Ctrl+.` code actions | `<Space>ca` |
-| Integrated terminal | tmux pane below, `Ctrl+j` to reach it |
-| Mouse click to move cursor | `h j k l` or click (mouse enabled) |
+| `F2` rename | `<Space>rn` |
+| `Ctrl+.` code actions | `<Space>ca` (Claude) |
+| Integrated terminal | tmux + `Ctrl+j` |
 | `Ctrl+Z` undo | `u` |
-| `Ctrl+Shift+Z` redo | `Ctrl+r` |
+| `Ctrl+Shift+Z` redo | `Shift+U` |
 | Select all | `ggVG` |
 | Duplicate line | `yyp` |
 | Delete line | `dd` |
-| Move line up/down | `ddkP` / `ddp` |
+| Comment line | `<Space>/` |
+| AI assistant | `<Space>cc` (Claude) |
