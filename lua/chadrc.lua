@@ -27,7 +27,7 @@ M.ui = {
 }
 
 M.base46 = {
-  theme = "tokyodark",
+  theme = "tokyonight",
 }
 
 -- Highlight # comments differently from """ docstrings
