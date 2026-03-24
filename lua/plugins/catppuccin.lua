@@ -17,7 +17,7 @@ return {
       highlight_overrides = {
         night = function()
           return {
-            Comment = { fg = "#7AA2F7", italic = false },
+            Comment = { fg = "#C9A96A", italic = false },
             ["@string.doc"] = { fg = "#9ECE6A", italic = true },
           }
         end,
