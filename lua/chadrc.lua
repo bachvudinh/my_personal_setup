@@ -26,14 +26,5 @@ M.ui = {
   },
 }
 
-M.base46 = {
-  theme = "catppuccin",
-}
-
--- Highlight # comments differently from """ docstrings
-M.hl_override = {
-  Comment = { fg = "#89B4FA", italic = false },
-  ["@string.doc"] = { fg = "#A6E3A1", italic = true },
-}
-
+-- catppuccin loaded directly as a plugin, theme overrides handled there
 return M
