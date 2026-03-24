@@ -1,31 +1,28 @@
 return {
-  "catppuccin/nvim",
-  name = "catppuccin",
+  "folke/tokyonight.nvim",
+  lazy = false,
   priority = 1000,
   config = function()
-    require("catppuccin").setup({
-      flavour = "mocha",
-      transparent_background = false,
-      term_colors = true,
-      compile = {
-        enabled = true,
-        path = vim.fn.stdpath("data") .. "/catppuccin/compiled",
+    require("tokyonight").setup({
+      style = "night",
+      transparent = false,
+      terminal_colors = true,
+      styles = {
+        comments = { italic = false },
+        keywords = { italic = false },
+        functions = {},
+        variables = {},
       },
-      options = {
-        indent_blankline = {
-          enabled = true,
-          colored_indent_levels = false,
-        },
-      },
+      sidebars = { "qf", "help", "terminal", "packer" },
       highlight_overrides = {
-        mocha = function()
+        night = function()
           return {
-            Comment = { fg = "#89B4FA", italic = false },
-            ["@string.doc"] = { fg = "#A6E3A1", italic = true },
+            Comment = { fg = "#7AA2F7", italic = false },
+            ["@string.doc"] = { fg = "#9ECE6A", italic = true },
           }
         end,
       },
     })
-    vim.cmd("colorscheme catppuccin")
+    vim.cmd("colorscheme tokyonight")
   end,
 }
