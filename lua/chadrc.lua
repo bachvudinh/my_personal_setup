@@ -27,15 +27,13 @@ M.ui = {
 }
 
 M.base46 = {
-  theme = "catppuccin",
+  theme = "tokyodark",
 }
 
--- Override comment color to distinguish # comments from """ docstrings
+-- Highlight # comments differently from """ docstrings
 M.hl_override = {
-  -- Make # comments teal and more visible
-  Comment = { fg = "#89B4FA", italic = false },
-  -- Docstrings (""") stay as strings (default teal/green)
-  ["@string.doc"] = { fg = "#A6E3A1", italic = true },
+  Comment = { fg = "#7AA2F7", italic = false },
+  ["@string.doc"] = { fg = "#9ECE6A", italic = true },
 }
 
 return M
