@@ -14,4 +14,4 @@ vim.g.format_on_save = true
 vim.g.copilot_enabled = true
 
 -- colorscheme
-vim.cmd("colorscheme tokyonight")
+vim.cmd("colorscheme catppuccin")

@@ -27,13 +27,13 @@ M.ui = {
 }
 
 M.base46 = {
-  theme = "tokyonight",
+  theme = "catppuccin",
 }
 
 -- Highlight # comments differently from """ docstrings
 M.hl_override = {
-  Comment = { fg = "#7AA2F7", italic = false },
-  ["@string.doc"] = { fg = "#9ECE6A", italic = true },
+  Comment = { fg = "#89B4FA", italic = false },
+  ["@string.doc"] = { fg = "#A6E3A1", italic = true },
 }
 
 return M
