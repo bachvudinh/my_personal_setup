@@ -13,4 +13,10 @@ opt.listchars = "tab:➝ ,lead:·,space:·,trail:·,nbsp:+,eol:¬"
 vim.g.format_on_save = true
 vim.g.copilot_enabled = true
 
+-- auto-save for Python files
+vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
+  pattern = "*.py",
+  command = "silent! write",
+})
+
 -- colorscheme set by catppuccin plugin
