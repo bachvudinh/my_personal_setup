@@ -4,7 +4,7 @@ return {
   priority = 1000,
   config = function()
     require("tokyonight").setup({
-      style = "night",
+      style = "moon",
       transparent = false,
       terminal_colors = true,
       styles = {
@@ -15,7 +15,7 @@ return {
       },
       sidebars = { "qf", "help", "terminal", "packer" },
       highlight_overrides = {
-        night = function()
+        moon = function()
           return {
             Comment = { fg = "#C9A96A", italic = false },
             ["@string.doc"] = { fg = "#9ECE6A", italic = true },
